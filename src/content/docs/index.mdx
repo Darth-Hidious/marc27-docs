@@ -1,0 +1,32 @@
+---
+title: MARC27 Documentation
+description: Infrastructure for materials science research
+template: splash
+hero:
+  tagline: Knowledge graph, LLM service, compute brokerage, and research engine — all in one platform.
+  actions:
+    - text: Get Started
+      link: /getting-started/quickstart/
+      icon: right-arrow
+      variant: primary
+    - text: API Reference
+      link: /api/endpoints/
+      icon: external
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+<CardGrid stagger>
+	<Card title="Knowledge Plane" icon="open-book">
+		211K+ entities, 6.5M+ edges. Search by keyword or natural language. [Learn more →](/knowledge/overview/)
+	</Card>
+	<Card title="Research Mode" icon="rocket">
+		AI agent recursively explores the graph, searches papers, and synthesizes cited answers. [Try it →](/knowledge/research-mode/)
+	</Card>
+	<Card title="LLM Service" icon="star">
+		11 models from 5 providers. Claude, GPT-4o, Gemini, DeepSeek, Mistral. [See models →](/intelligence/llm/)
+	</Card>
+	<Card title="Compute" icon="setting">
+		GPU brokerage: RunPod, Lambda, AWS. MACE-MH-1, Quantum Espresso, LAMMPS. [GPU pricing →](/compute/providers/)
+	</Card>
+</CardGrid>
