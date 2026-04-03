@@ -72,6 +72,7 @@ export default defineConfig({
 						{ label: 'Enterprise', slug: 'self-hosting/enterprise' },
 					],
 				},
+				{ label: 'System Status', slug: 'status' },
 			],
 		}),
 	],
