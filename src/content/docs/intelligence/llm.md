@@ -1,23 +1,28 @@
 ---
 title: LLM Service
-description: 11 models from 5 providers — BYOK or use platform keys
+description: Multiple providers, auto-discovered models, BYOK support
 ---
 
 ## Available Models
 
-| Model | Provider | Input $/M | Output $/M | Context |
-|-------|----------|-----------|------------|---------|
-| Claude Haiku 4.5 | Anthropic | $0.80 | $4.00 | 200K |
-| Claude Sonnet 4 | Anthropic | $3.00 | $15.00 | 200K |
-| Claude Opus 4 | Anthropic | $15.00 | $75.00 | 200K |
-| GPT-4o | OpenAI | $2.50 | $10.00 | 128K |
-| GPT-4o Mini | OpenAI | $0.15 | $0.60 | 128K |
-| O3 Mini | OpenAI | $1.10 | $4.40 | 200K |
-| Gemini 2.5 Pro | Google | $1.25 | $10.00 | 1049K |
-| DeepSeek V3 | OpenRouter | $0.14 | $0.28 | 64K |
-| GLM-4.5 Air | OpenRouter | **Free** | **Free** | 128K |
-| Mistral Large | Mistral | $2.00 | $6.00 | 128K |
-| Qwen 2.5 72B | OpenRouter | $0.35 | $0.40 | 131K |
+Models are **automatically discovered** from each provider's API weekly. The list below is a snapshot — use the API for the current catalog:
+
+```bash
+curl -H "X-API-Key: $KEY" \
+  "https://api.marc27.com/api/v1/projects/00000000-0000-4000-c000-000000000001/llm/models"
+```
+
+## Providers
+
+| Provider | Auth Style | Free Tier |
+|----------|-----------|-----------|
+| Anthropic | x-api-key | No |
+| OpenAI | Bearer | No |
+| Google | query key | No |
+| Mistral | Bearer | No |
+| OpenRouter | Bearer | GLM-4.5 Air ($0) |
+
+Models are auto-discovered weekly from each provider's models API. New models from trusted providers are auto-approved — no admin intervention needed.
 
 ## Endpoint
 
