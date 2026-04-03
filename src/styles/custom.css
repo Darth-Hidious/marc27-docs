@@ -1,0 +1,34 @@
+/* MARC27 docs theme — dark-first, amber accent */
+
+:root {
+	--sl-color-accent-low: #3d2e05;
+	--sl-color-accent: #fbbf24;
+	--sl-color-accent-high: #fef3c7;
+	--sl-color-white: #f0f0f5;
+	--sl-color-gray-1: #c0c0cc;
+	--sl-color-gray-2: #8888a0;
+	--sl-color-gray-3: #555566;
+	--sl-color-gray-4: #2a2a35;
+	--sl-color-gray-5: #141419;
+	--sl-color-gray-6: #0a0a0f;
+	--sl-color-black: #0a0a0f;
+	--sl-font: 'IBM Plex Sans', system-ui, sans-serif;
+	--sl-font-mono: 'IBM Plex Mono', monospace;
+}
+
+/* Dark mode is default */
+[data-theme='light'] {
+	--sl-color-accent-low: #fef3c7;
+	--sl-color-accent: #f59e0b;
+	--sl-color-accent-high: #92400e;
+}
+
+/* Logo sizing */
+.site-title img {
+	height: 1.5rem;
+}
+
+/* Code blocks */
+pre {
+	border: 1px solid var(--sl-color-gray-4);
+}
