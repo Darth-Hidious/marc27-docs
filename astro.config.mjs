@@ -3,8 +3,7 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 
 export default defineConfig({
-	site: 'https://api.marc27.com',
-	base: '/docs',
+	site: 'https://marc27-docs.vercel.app',
 	integrations: [
 		starlight({
 			title: 'MARC27',
