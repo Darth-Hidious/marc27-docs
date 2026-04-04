@@ -10,7 +10,7 @@ MARC27 is a platform for materials science research. It provides a knowledge gra
 | Plane | What it does |
 |-------|-------------|
 | **Knowledge** | 211K+ entities, 6.5M+ edges in a Neo4j graph. Semantic search over 208K embeddings. 44 corpora from NASA, MatKG, QMOF, EuroPMC. |
-| **Intelligence** | 11 LLM models from 5 providers. MACE-MH-1, CHGNet, Quantum Espresso as compute tools. RLM Research Engine. |
+| **Intelligence** | Auto-discovered LLM models from Anthropic, OpenAI, Google, OpenRouter (refreshed weekly). MACE-MH-1, CHGNet, Quantum Espresso as compute tools. RLM Research Engine with recursive decomposition. |
 | **Orchestration** | 45 API endpoints. Auth (JWT, API keys, OAuth). Workflows. Support tickets. Policy enforcement. |
 | **Compute** | GPU brokerage across RunPod, Lambda, AWS. PRISM nodes for BYOC. $50 safety cap per job. |
 

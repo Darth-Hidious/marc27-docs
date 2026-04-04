@@ -22,7 +22,7 @@ Response when healthy:
 |---------|-----|-------------|
 | API Gateway | `api.marc27.com` | All 45 endpoints |
 | Knowledge Service | Internal | Neo4j graph + pgvector |
-| LLM Service | Internal | 11 models, streaming |
+| LLM Service | Internal | Auto-discovered models, streaming |
 | Runtime | Internal | PDF extraction, models |
 
 ## Uptime
