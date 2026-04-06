@@ -30,20 +30,25 @@ export default defineConfig({
 						{ label: 'Graph Search', slug: 'knowledge/graph-search' },
 						{ label: 'Semantic Search', slug: 'knowledge/semantic-search' },
 						{ label: 'Research Mode (RLM)', slug: 'knowledge/research-mode' },
+						{ label: 'Knowledge Pipeline', slug: 'knowledge/pipeline' },
 						{ label: 'Ingestion', slug: 'knowledge/ingestion' },
 					],
 				},
 				{
 					label: 'Intelligence Plane',
 					items: [
+						{ label: 'LLM Models (519)', slug: 'intelligence/models' },
+						{ label: 'RLM Research Engine', slug: 'intelligence/rlm' },
+						{ label: 'MiroFish Discourse', slug: 'intelligence/mirofish' },
+						{ label: 'CFE Scoring Kernel', slug: 'intelligence/cfe' },
 						{ label: 'LLM Service', slug: 'intelligence/llm' },
-						{ label: 'Compute Tools', slug: 'intelligence/compute-tools' },
 					],
 				},
 				{
 					label: 'Compute Plane',
 					items: [
 						{ label: 'GPU Providers', slug: 'compute/providers' },
+						{ label: 'Model Deployments', slug: 'compute/deployments' },
 						{ label: 'Submitting Jobs', slug: 'compute/jobs' },
 						{ label: 'PRISM Nodes', slug: 'compute/nodes' },
 					],
