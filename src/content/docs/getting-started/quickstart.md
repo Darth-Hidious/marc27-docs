@@ -3,69 +3,84 @@ title: Quick Start
 description: Get running with MARC27 in 2 minutes
 ---
 
-## Option 1: PRISM CLI (recommended)
+## 1. Install PRISM
 
 ```bash
-# Install
 pip install prism-platform
+```
 
-# Login
+## 2. Authenticate
+
+```bash
 prism login
-
-# Search the knowledge graph
-prism query --platform --semantic "creep resistant superalloy" --json
-
-# Run a research query
-prism query --platform --semantic "what materials resist nozzle erosion"
+# Opens browser → enter the code → done
 ```
 
-## Option 2: Python SDK
+Or set an API key directly:
 
 ```bash
-pip install marc27
-```
-
-```python
-from marc27 import PlatformClient
-
-client = PlatformClient(api_key="m27_your_key_here")
-
-# Search
-results = client.knowledge.search("thermal barrier coating")
-
-# LLM completion
-response = client.llm.complete(
-    model="claude-sonnet-4-20250514",
-    messages=[{"role": "user", "content": "Explain creep in Ni-based superalloys"}]
-)
-```
-
-## Option 3: Direct API
-
-```bash
-# No SDK needed — just curl
 export MARC27_API_KEY=m27_your_key_here
+```
 
-# Search the knowledge graph
-curl -H "X-API-Key: $MARC27_API_KEY" \
-  "https://api.marc27.com/api/v1/knowledge/graph/search?q=titanium&limit=5"
+## 3. Search the Knowledge Graph
 
-# Semantic search
-curl -X POST -H "X-API-Key: $MARC27_API_KEY" \
+```bash
+prism research "Find materials with high creep resistance" --depth 0
+```
+
+`--depth 0` searches the local graph only (free). Higher depths enable web search (costs LLM calls).
+
+## 4. Try GraphQL
+
+```bash
+curl -X POST https://api.marc27.com/api/v1/graphql \
+  -H "X-API-Key: m27_your_key" \
   -H "Content-Type: application/json" \
-  "https://api.marc27.com/api/v1/knowledge/search" \
-  -d '{"query": "high temperature creep resistant superalloy", "limit": 5}'
+  -d '{"query":"{ search(term: \"titanium\", limit: 5) { name entityType label } }"}'
 ```
 
-## For AI Agents
+Response:
+
+```json
+{
+  "data": {
+    "search": [
+      {"name": "Titanium", "entityType": "CHM", "label": "Chemical"},
+      {"name": "α-Titanium", "entityType": "CHM", "label": "Chemical"},
+      {"name": "β-Titanium", "entityType": "CHM", "label": "Chemical"}
+    ]
+  }
+}
+```
+
+## 5. Explore Entity Relationships
 
 ```bash
-# One env var — that's it
-export MARC27_API_KEY=m27_your_key_here
-
-# Read the full API map
-curl https://api.marc27.com/api/v1/agent/capabilities
-
-# Or use PRISM
-prism agent  # prints all commands
+curl -X POST https://api.marc27.com/api/v1/graphql \
+  -H "X-API-Key: m27_your_key" \
+  -H "Content-Type: application/json" \
+  -d '{"query":"{ entity(name: \"Nickel\") { name neighbors(limit: 3) { target { name entityType } relType count } } }"}'
 ```
+
+This returns Nickel's neighbors — what it co-occurs with across 5 million papers:
+
+```json
+{
+  "data": {
+    "entity": {
+      "name": "Nickel",
+      "neighbors": [
+        {"target": {"name": "Ni", "entityType": "CHM"}, "relType": "CHM-CHM", "count": 14664},
+        {"target": {"name": "SEM", "entityType": "CMT"}, "relType": "CHM-CMT", "count": 6972},
+        {"target": {"name": "Catalyst", "entityType": "APL"}, "relType": "CHM-APL", "count": 6571}
+      ]
+    }
+  }
+}
+```
+
+## Next Steps
+
+- [GraphQL Reference](/api/graphql) — all 20 queries and 6 mutations
+- [Research Mode](/knowledge/research-mode) — how the RLM engine works
+- [Model Deployments](/compute/deployments) — deploy models from HuggingFace
