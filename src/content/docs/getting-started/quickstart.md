@@ -6,8 +6,11 @@ description: Get running with MARC27 in 2 minutes
 ## 1. Install PRISM
 
 ```bash
-pip install prism-platform
+curl -fsSL https://prism.marc27.com/install.sh | bash
 ```
+
+This installs the `prism` CLI to `~/.prism/bin` (macOS and Linux). See
+[Installation](/prism/install) for version pinning and details.
 
 ## 2. Authenticate
 
