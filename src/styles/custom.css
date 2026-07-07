@@ -1,5 +1,17 @@
 /* MARC27 docs theme — dark-first, amber accent */
 
+/* Load the brand fonts referenced below. Without these imports the
+   @font-face rules are never emitted and the CSS below silently falls
+   back to system fonts. Latin subset only, and only the weights actually
+   used (body / headings / bold) to keep the payload small. */
+@import '@fontsource/ibm-plex-sans/latin-400.css';
+@import '@fontsource/ibm-plex-sans/latin-600.css';
+@import '@fontsource/ibm-plex-sans/latin-700.css';
+@import '@fontsource/ibm-plex-mono/latin-400.css';
+@import '@fontsource/ibm-plex-mono/latin-600.css';
+
+/* Dark mode (default). Defined on plain :root so it also covers the
+   pre-hydration SSR state where no data-theme attribute is set yet. */
 :root {
 	--sl-color-accent-low: #3d2e05;
 	--sl-color-accent: #fbbf24;
@@ -16,16 +28,40 @@
 	--sl-font-mono: 'IBM Plex Mono', monospace;
 }
 
-/* Dark mode is default */
+/* Light mode.
+   The dark palette above sits on an unlayered :root, which overrides
+   Starlight's own light-theme tokens (they live in @layer starlight.base,
+   and unlayered rules win over layered ones). So we must restore a full
+   light neutral scale here — not just the accent — otherwise light mode
+   keeps dark backgrounds while the nav flips light ("light header on
+   dark body"). */
 [data-theme='light'] {
+	/* Amber accent, darkened so links keep AA contrast on white. */
 	--sl-color-accent-low: #fef3c7;
-	--sl-color-accent: #f59e0b;
+	--sl-color-accent: #b45309;
 	--sl-color-accent-high: #92400e;
+	/* Neutral scale flipped for light backgrounds (mirrors Starlight's
+	   tuned light ramp). */
+	--sl-color-white: hsl(224, 10%, 10%);
+	--sl-color-gray-1: hsl(224, 14%, 16%);
+	--sl-color-gray-2: hsl(224, 10%, 23%);
+	--sl-color-gray-3: hsl(224, 7%, 36%);
+	--sl-color-gray-4: hsl(224, 6%, 56%);
+	--sl-color-gray-5: hsl(224, 6%, 77%);
+	--sl-color-gray-6: hsl(224, 20%, 94%);
+	--sl-color-black: hsl(0, 0%, 100%);
 }
 
 /* Logo sizing */
 .site-title img {
 	height: 1.5rem;
+}
+
+/* The brand logo ships white-only (fill="#fff"), so it's invisible on
+   light backgrounds. The mark is pure monochrome, so inverting it in
+   light mode yields a clean black logo without shipping a second asset. */
+[data-theme='light'] .site-title img {
+	filter: invert(1);
 }
 
 /* Code blocks */
